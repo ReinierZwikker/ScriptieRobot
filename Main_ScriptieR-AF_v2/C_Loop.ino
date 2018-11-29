@@ -28,15 +28,28 @@ void loop() {
       while(!Found) {
 
         drive();
-  
-        while(distance() > TurnDistance && !Found) {
-          Found = LightFound();
-        }
+
         
+
+        while(distance() > TurnDistance && !Found) {
+          Found = LightFound(150);
+        }
+
         drive(0);
         
         if(!Found) {
           turn(RandBool());
+        }
+      }
+
+      Found = false;
+      
+      while(!Found) {
+
+        drive(40);
+  
+        while(distance() > TurnDistance && !Found) {
+          Found = LightFound();
         }
       }
 
@@ -121,19 +134,16 @@ void loop() {
 
     case 7:
 
-      //Serial.println(distance());
 
-      while(true) {
-      DebugLED();
-      }
+      Serial.println(distance());
 
       break;
 
     case 8:
 
-      Serial.print(analogRead(A0));
-      Serial.print(" + ");
-      Serial.println(LightFound());
+      Serial.println(analogRead(A0));
+      if(LightFound())
+        Serial.println(0);
 
 
       

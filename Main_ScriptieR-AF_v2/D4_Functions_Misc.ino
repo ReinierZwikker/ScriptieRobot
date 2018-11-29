@@ -1,7 +1,7 @@
 void DebugLED() {
-  digitalWrite(ledPin, HIGH);
+  digitalWrite(13, HIGH);
   delay(2000);
-  digitalWrite(ledPin, LOW);
+  digitalWrite(13, LOW);
 }
 
 void FlashLED(int pin, int timing, bool turnoff) {
@@ -32,4 +32,3 @@ bool RandBoolXS() {
     return(false);
   }
 }
-

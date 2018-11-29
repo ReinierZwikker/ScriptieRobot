@@ -6,7 +6,7 @@
 
 #define ledPin 2
 
-int state = 8;
+int state = 2;
 
 // state:
 // 0 = Idle
@@ -23,8 +23,9 @@ const float motorLOffset = 0;
 const float motorROffset = 0;
 
 const int SecondsToCount = 15; //s
-const int LightSens = 250; // van de 1024
-const int TurnDistance = 18; //cm
+const int LightSens = 200; // van de 1024
+const int TurnDistance = 20; //cm
+const int MaxNumDistances = 10;
 
 //voor states
 bool Found = false;
@@ -32,6 +33,11 @@ bool Counting = false;
 
 int LastInput = 1000;
 int CurrentInput;
+
+int Distances[MaxNumDistances];
+int DistanceIndex = 0;
+int TotalDistances = 0;
+int NumDistances = 0;
 
 int MaxCount = 200;
 
@@ -43,3 +49,4 @@ int TurnTime45 = TurnTime90/2 + 0;
 void drive(int Speed = 50);
 void turn(bool side, int Speed = 50, int angle = 90);
 void FlashLED(int pin = ledPin, int timing = 500, bool turnoff = true);
+bool LightFound(int Sens = LightSens);
