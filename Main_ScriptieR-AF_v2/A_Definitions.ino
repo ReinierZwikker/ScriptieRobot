@@ -24,8 +24,7 @@ const float motorROffset = 0;
 
 const int SecondsToCount = 15; //s
 const int LightSens = 200; // van de 1024
-const int TurnDistance = 20; //cm
-const int MaxNumDistances = 10;
+const int MaxNumDistances = 5;
 
 //voor states
 bool Found = false;
@@ -42,8 +41,8 @@ int NumDistances = 0;
 int MaxCount = 200;
 
 int TurnTime90 = 525; //Tijd om 90 graden te draaien bij snelheid = 50 in ms
-int TurnTime180 = TurnTime90*2 + 0; 
-int TurnTime45 = TurnTime90/2 + 0; 
+int TurnTime180 = TurnTime90*2 + 0;
+int TurnTime45 = TurnTime90/2 + 0;
 
 //default values voor functies
 void drive(int Speed = 50);

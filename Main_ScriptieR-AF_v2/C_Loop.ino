@@ -5,7 +5,7 @@ void loop() {
       //Do nothing
       break;
     case 1:
-    
+
       for(int i = 0; i < SecondsToCount; i++) {
         delay(800);
           digitalWrite(13, HIGH);
@@ -14,9 +14,9 @@ void loop() {
       }
 
       state = 2;
-      
+
       break;
-    
+
     case 2: {
 
       resetLightSens();
@@ -29,53 +29,40 @@ void loop() {
 
         drive();
 
-        
-
         while(distance() > TurnDistance && !Found) {
-          Found = LightFound(150);
+          Found = LightFound(250);
         }
 
         drive(0);
-        
+
         if(!Found) {
           turn(RandBool());
-        }
-      }
-
-      Found = false;
-      
-      while(!Found) {
-
-        drive(40);
-  
-        while(distance() > TurnDistance && !Found) {
-          Found = LightFound();
         }
       }
 
       state = 0;
 
       DebugLED();
-      
+
       break;
 
     }
-    
-    case 3: {      
+
+    case 3: {
 
       for(int Count = 0; Count < MaxCount;  Count++){
-        
+
         drive();
-  
+
         while(distance() > TurnDistance && Count < MaxCount) {
           if(RandBoolXS()) {
             turn(RandBool());
           }
           Count++;
         }
-      
+
         drive(0);
-      
+
         if(Count < MaxCount) {
           turn(RandBool());
         }
@@ -93,16 +80,16 @@ void loop() {
 
 
         FlashLED();
-      
+
 
       break;
-      
+
     }
-      
+
     case 5: {
-  
+
         bool TestRondjeDirection = true;
-        
+
           drive();
         delay(2000);
           turn(TestRondjeDirection);
@@ -114,12 +101,12 @@ void loop() {
           turn(TestRondjeDirection);
           drive();
         delay(2000);
-          turn(TestRondjeDirection);        
-  
+          turn(TestRondjeDirection);
+
         state = 0;
-      
+
         break;
-      
+
     }
 
     case 6:
@@ -129,7 +116,7 @@ void loop() {
       drive(0);
 
       state = 0;
-      
+
       break;
 
     case 7:
@@ -146,7 +133,7 @@ void loop() {
         Serial.println(0);
 
 
-      
+
       break;
   }
 }
