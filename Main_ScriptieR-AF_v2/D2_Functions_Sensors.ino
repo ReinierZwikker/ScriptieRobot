@@ -1,13 +1,13 @@
 int distance() {
   long duration;
   int distance;
-  
+
   digitalWrite(DisSensTrigPin, LOW);
   delayMicroseconds(5);
   digitalWrite(DisSensTrigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(DisSensTrigPin, LOW);
-  
+
   duration = pulseIn(DisSensEchoPin, HIGH);
   distance = duration*0.034/2;
 
