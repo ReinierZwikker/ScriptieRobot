@@ -6,8 +6,8 @@ void DebugLED() {
 
 void FlashLED(int pin, int timing, bool turnoff) {
   digitalWrite(pin, HIGH);
-  delay(timing);
   if(turnoff) {
+    delay(timing);
     digitalWrite(pin, LOW);
     delay(timing);
   }

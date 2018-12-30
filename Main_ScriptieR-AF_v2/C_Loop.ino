@@ -25,18 +25,15 @@ void loop() {
 
       scan(true);
 
+      drive();
+
       while(!Found) {
 
-        drive();
-
         while(distance() > TurnDistance && !Found) {
-          Found = LightFound(250);
-        }
-
-        drive(0);
-
-        if(!Found) {
+          Found = LightFound();
+          drive(0);
           turn(RandBool());
+          drive();
         }
       }
 
@@ -50,23 +47,21 @@ void loop() {
 
     case 3: {
 
-      for(int Count = 0; Count < MaxCount;  Count++){
+      drive();
 
-        drive();
+      for(int i = 0; i < SecondsToCount; i++) {
 
-        while(distance() > TurnDistance && Count < MaxCount) {
-          if(RandBoolXS()) {
-            turn(RandBool());
-          }
-          Count++;
+        if (distance() < TurnDistance) {
+          drive(0);
+          turn(RandBool());
+          drive();
         }
 
-        drive(0);
-
-        if(Count < MaxCount) {
+        if (RandBoolXS())
           turn(RandBool());
         }
-      }
+
+
 
       DebugLED();
 
