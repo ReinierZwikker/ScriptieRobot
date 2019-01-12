@@ -29,12 +29,13 @@ void loop() {
 
       while(!Found) {
 
-        while(distance() > TurnDistance && !Found) {
-          Found = LightFound();
+        if(distance() < TurnDistance) {
           drive(0);
           turn(RandBool());
           drive();
         }
+
+        Found = LightFound();
       }
 
       state = 0;
@@ -57,11 +58,10 @@ void loop() {
           drive();
         }
 
-        if (RandBoolXS())
+        if (RandBoolXS()) {
           turn(RandBool());
         }
-
-
+      }
 
       DebugLED();
 
@@ -73,12 +73,8 @@ void loop() {
 
     case 4: {
 
-
-        FlashLED();
-
-
+      FlashLED();
       break;
-
     }
 
     case 5: {
@@ -101,7 +97,6 @@ void loop() {
         state = 0;
 
         break;
-
     }
 
     case 6:
