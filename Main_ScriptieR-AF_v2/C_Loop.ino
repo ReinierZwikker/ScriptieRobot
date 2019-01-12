@@ -33,6 +33,8 @@ void loop() {
           turn(RandBool());
           drive();
         }
+
+        Found = LightFound();
       }
 
       state = 0;
