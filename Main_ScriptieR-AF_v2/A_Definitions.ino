@@ -22,10 +22,13 @@ int state = 2;
 const float motorLOffset = 0;
 const float motorROffset = 0;
 
-const int SecondsToCount = 15; //s
 const int LightSens = 250; // van de 1024
 const int TurnDistance = 25; //cm
 const int MaxNumDistances = 5;
+
+unsigned long startMillis;  //long variabelen voor timers
+unsigned long currentMillis;
+const unsigned long millisToCount = 15000; //ms
 
 //voor states
 bool Found = false;
