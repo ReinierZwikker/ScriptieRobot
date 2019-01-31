@@ -22,9 +22,13 @@ int state = 2;
 const float motorLOffset = 0;
 const float motorROffset = 0;
 
-const int SecondsToCount = 15; //s
-const int LightSens = 200; // van de 1024
+const int LightSens = 250; // van de 1024
+const int TurnDistance = 25; //cm
 const int MaxNumDistances = 5;
+
+unsigned long startMillis;  //long variabelen voor timers
+unsigned long currentMillis;
+const unsigned long millisToCount = 15000; //ms
 
 //voor states
 bool Found = false;
@@ -37,8 +41,6 @@ int Distances[MaxNumDistances];
 int DistanceIndex = 0;
 int TotalDistances = 0;
 int NumDistances = 0;
-
-int MaxCount = 200;
 
 int TurnTime90 = 525; //Tijd om 90 graden te draaien bij snelheid = 50 in ms
 int TurnTime180 = TurnTime90*2 + 0;

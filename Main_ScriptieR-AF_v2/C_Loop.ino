@@ -6,11 +6,10 @@ void loop() {
       break;
     case 1:
 
-      for(int i = 0; i < SecondsToCount; i++) {
-        delay(800);
-          digitalWrite(13, HIGH);
-        delay(200);
-          digitalWrite(13, LOW);
+      startMillis = millis();
+
+      while(currentMillis - startMillis <= millisToCount) {
+          currentMillis = millis();
       }
 
       state = 2;
@@ -25,19 +24,17 @@ void loop() {
 
       scan(true);
 
-      while(!Found) {
+      drive();
 
-        drive();
+      while(!LightFound()) {
 
-        while(distance() > TurnDistance && !Found) {
-          Found = LightFound(250);
-        }
-
-        drive(0);
-
-        if(!Found) {
+        if(distance() < TurnDistance) {
+          drive(0);
           turn(RandBool());
+          drive();
         }
+
+        Found = LightFound();
       }
 
       state = 0;
@@ -50,22 +47,23 @@ void loop() {
 
     case 3: {
 
-      for(int Count = 0; Count < MaxCount;  Count++){
+      drive();
+      
+      startMillis = millis();
 
-        drive();
+      while(currentMillis - startMillis <= millisToCount) {
 
-        while(distance() > TurnDistance && Count < MaxCount) {
-          if(RandBoolXS()) {
+          currentMillis = millis();
+
+          if (distance() < TurnDistance) {
+            drive(0);
+            turn(RandBool());
+            drive();
+          }
+
+          if (RandBoolXS()) {
             turn(RandBool());
           }
-          Count++;
-        }
-
-        drive(0);
-
-        if(Count < MaxCount) {
-          turn(RandBool());
-        }
       }
 
       DebugLED();
@@ -78,12 +76,8 @@ void loop() {
 
     case 4: {
 
-
-        FlashLED();
-
-
+      FlashLED();
       break;
-
     }
 
     case 5: {
@@ -106,7 +100,6 @@ void loop() {
         state = 0;
 
         break;
-
     }
 
     case 6:
